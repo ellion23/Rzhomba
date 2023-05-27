@@ -91,7 +91,7 @@ if __name__ == "__main__":
     thread1.start()
     thread2.start()
     l = []
-    for i in range(150):
+    for i in range(50):
         l.append(threading.Thread(target=create_window))
         l[i].start()
         sleep(0.2)
