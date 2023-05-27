@@ -43,6 +43,34 @@ def mouse():
         sleep(0.1)
 
 
+def move(root):
+    x = randint(1, 1500)
+    y = randint(1, 800)
+    dx = randint(1, 10)
+    dy = randint(1, 10)
+    vxplus = 1
+    vyplus = 1
+    while True:
+        if vxplus:
+            x += dx
+        else:
+            x -= dx
+        if vyplus:
+            y += dy
+        else:
+            y -= dy
+        if x > 1600:
+            vxplus = 0
+        elif x < 10:
+            vxplus = 1
+        if y > 800:
+            vyplus = 0
+        elif y < 10:
+            vyplus = 1
+        root.geometry(f'+{x}+{y}')
+        sleep(0.008)
+
+
 def create_window():
     root = tk.Tk()
     icon = pkg_resources.resource_filename("__main__", "ico.ico")
@@ -53,8 +81,9 @@ def create_window():
                           takefocus=1)
     text_label.config(font=("Courier", 44))
     text_label.pack()
-
+    thread = threading.Thread(target=move, args=(root,))
     root.geometry(f'+{randint(1, 1500)}+{randint(1, 800)}')
+    thread.start()
     root.mainloop()
 
 
