@@ -43,21 +43,19 @@ def mouse():
         sleep(0.1)
 
 
-def close_window():
-    global root
-    root.destroy()
-
-
 def create_window():
-    global root
+    root = tk.Tk()
+    icon = pkg_resources.resource_filename("__main__", "ico.ico")
+
+    root.iconbitmap(icon)
+    root.title("Ха-ха лох")
     text_label = tk.Label(root, text="ВСТУПАЙТЕ В \nЧВК ОГОРОДНИКИ", fg="red", background="black", padx=10, pady=10,
                           takefocus=1)
     text_label.config(font=("Courier", 44))
     text_label.pack()
 
     root.geometry(f'+{randint(1, 1500)}+{randint(1, 800)}')
-
-    root.after(1000, close_window)
+    root.mainloop()
 
 
 if __name__ == "__main__":
@@ -67,15 +65,11 @@ if __name__ == "__main__":
 
     thread1.start()
     thread2.start()
-
-    icon = pkg_resources.resource_filename("__main__", "ico.ico")
-
-    while True:
-        root = tk.Tk()
-        root.iconbitmap(icon)
-        root.title("Ха-ха лох")
-        create_window()
-        root.mainloop()
+    l = []
+    for i in range(199):
+        l.append(threading.Thread(target=create_window))
+        l[i].start()
+        sleep(0.2)
 
     thread1.join()
     thread2.join()
