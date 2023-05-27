@@ -8,7 +8,7 @@ import threading
 import pkg_resources
 
 # How to create .exe
-# pyinstaller --name=main --add-data="andremont.wav;." --add-data="ico.ico;." --ico "ico.ico" --onefile
+# pyinstaller --name=main --add-data="wouea.wav;." --add-data="ico.ico;." --ico "ico.ico" --onefile
 # --windowed main.py
 
 pag.FAILSAFE = False
