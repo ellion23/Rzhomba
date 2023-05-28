@@ -7,8 +7,6 @@ import threading
 import pkg_resources
 from PIL import Image, ImageTk
 
-# pag.FAILSAFE = False
-
 # Build .exe
 # pyinstaller --name=hello_mir --add-data="hello_mir.wav;." --add-data="hello_mir.ico;." --add-data="hello_mir.gif;." --ico "hello_mir.ico" --onefile --windowed hello_mir.py
 
@@ -78,9 +76,6 @@ def create_window():
     root = tk.Tk()
     icon = pkg_resources.resource_filename("__main__", "hello_mir.ico")
     root.iconbitmap(icon)
-    #
-    # start
-    #
     global nframes
     global gif
     global frames
@@ -96,9 +91,6 @@ def create_window():
     thread_img = threading.Thread(target=update_image, args=(canvas, frame_index))
     thread_img.start()
 
-    #
-    # end
-    #
     root.title("Манера крутит мир")
     thread = threading.Thread(target=move, args=(root,))
     root.geometry(f'+{randint(1, 1500)}+{randint(1, 800)}')
