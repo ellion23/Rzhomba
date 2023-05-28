@@ -70,13 +70,14 @@ def move(root):
 def create_window():
     root = tk.Tk()
     icon = pkg_resources.resource_filename("__main__", "ico.ico")
-
     root.iconbitmap(icon)
+
     root.title("Ха-ха лох")
     text_label = tk.Label(root, text="ВСТУПАЙТЕ В \nЧВК ОГОРОДНИКИ", fg="red", background="black", padx=10, pady=10,
                           takefocus=1)
     text_label.config(font=("Courier", 44))
     text_label.pack()
+
     thread = threading.Thread(target=move, args=(root,))
     root.geometry(f'+{randint(1, 1500)}+{randint(1, 800)}')
     thread.start()

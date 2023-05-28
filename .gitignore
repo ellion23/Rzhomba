@@ -3,3 +3,4 @@ dist
 main.spec
 main5threads.spec
 main25threads.spec
+hello_mir.spec
