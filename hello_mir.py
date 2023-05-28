@@ -1,4 +1,3 @@
-import pyautogui as pag
 from random import randint
 from time import sleep
 import tkinter as tk
@@ -8,7 +7,7 @@ import threading
 import pkg_resources
 from PIL import Image, ImageTk
 
-pag.FAILSAFE = False
+# pag.FAILSAFE = False
 
 # Build .exe
 # pyinstaller --name=hello_mir --add-data="hello_mir.wav;." --add-data="hello_mir.ico;." --add-data="hello_mir.gif;." --ico "hello_mir.ico" --onefile --windowed hello_mir.py
@@ -32,14 +31,6 @@ def play_audio():
         stream.stop_stream()
         stream.close()
         p.terminate()
-
-
-def mouse():
-    while True:
-        x = randint(1, 1920)
-        y = randint(1, 1080)
-        pag.moveTo(x, y)
-        sleep(0.1)
 
 
 def move(root):
@@ -121,13 +112,10 @@ if __name__ == "__main__":
     frames = []
     nframes = gif.n_frames
 
-    # thread1 = threading.Thread(target=mouse)
     thread2 = threading.Thread(target=play_audio)
 
-    # thread1.start()
     thread2.start()
     l = threading.Thread(target=create_window)
     l.start()
 
-    # thread1.join()
     thread2.join()
